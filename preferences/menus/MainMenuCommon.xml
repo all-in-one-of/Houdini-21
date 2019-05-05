@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mainMenu>
+  <menuBar>
+    <subMenu id="bp_menu">
+      <label>Bp Menu</label>
+      <titleItem>
+        <label>First Iteration</label>
+      </titleItem>
+      <separatorItem/>
+      <titleItem>
+        <label>second Iteration</label>
+      </titleItem>
+    </subMenu>
+  </menuBar>
+</mainMenu>

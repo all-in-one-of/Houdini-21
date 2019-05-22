@@ -188,6 +188,8 @@ class StageContextError(Exception):
     """
 
 def run(usd_file_path="D:\Resources\Kitchen_set\Kitchen_set.usd"):
+    if not os.path.exists(usd_file_path):
+        raise IOError("File Missing, Please set path")
     hou.hipFile.clear(suppress_save_prompt=False)
     _log.info("Starting Conversion ..")
     usd_stage = Usd.Stage.Open(usd_file_path)

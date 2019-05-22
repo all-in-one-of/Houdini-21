@@ -183,12 +183,19 @@ def create_merge_insert(prim, parent_node):
     _log.debug("Created Merge for %s", prim.GetName())
     return merge_insert
 
+class StageContextError(Exception):
+    """
+    """
 
 def run(usd_file_path="D:\Resources\Kitchen_set\Kitchen_set.usd"):
     hou.hipFile.clear(suppress_save_prompt=False)
     _log.info("Starting Conversion ..")
     usd_stage = Usd.Stage.Open(usd_file_path)
     stage_context = hou.node("/stage")
+    if not stage_context:
+        raise StageContextError(
+            "Please use houdini v17 and set env HOUDINI_SOLARIS=1 before opening!"
+        )
     # get the default prim and create it a prim node.
     default_node = stage_context.createNode("prim", usd_stage.GetDefaultPrim().GetName())
     # set the kind type.
@@ -260,3 +267,7 @@ def run(usd_file_path="D:\Resources\Kitchen_set\Kitchen_set.usd"):
 
 
 run()
+_log.info(
+    "Please arrange the nodes by selecting all of them ;"
+    "Then press and hold 'a' key, left mouse drag updwards."
+)
